@@ -20,7 +20,7 @@ class ErrorHandler(commands.Cog):
             await ctx.send('You do not have permissions required to run this command.')
 
         elif isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('Required argument "{}" is missing.')
+            await ctx.send('A required argument is missing.')
 
         elif isinstance(error, commands.BadArgument):
             await ctx.send(error.args[0])
