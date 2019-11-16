@@ -13,8 +13,9 @@ class Util(commands.Cog):
     async def on_ready(self):
         print(f'{cog_name} was loaded.')
 
-    @commands.command()
-    async def setprefix(self, ctx, prefix):
+    @commands.command(aliases=['setprefix','changeprefix'])
+    async def prefix(self, ctx, prefix):
+        """Changes the server's bot prefix"""
         with open('./prefixes.json', 'r') as prfx:
             prefixes = json.load(prfx)
 
