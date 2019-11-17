@@ -18,18 +18,29 @@ class Miscellaneous(commands.Cog):
         embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/644896423355351050/4742758a125ceaea9e2895105f1a0451.png')
         embed.add_field(name='Source code', value='https://github.com/polgaria/gregbot-2')
         embed.set_footer(text=f'Response time: {self.greg.latency * 1000:.2f}ms')
-
         await ctx.send(embed=embed)
-
-    @commands.command(aliases=['uy'])
-    async def guy(self, ctx):
-        """guy"""
-        await ctx.send('guy')
 
     @commands.command(aliases=['latency'])
     async def ping(self, ctx):
         """Displays the bot's response time (latency)"""
         await ctx.send(f'Ping: {self.greg.latency * 1000:.2f}ms')
+
+    @commands.command(aliases=['serverinfo', 'guildinfo'])
+    async def server(self, ctx):
+        """Displays some info about the current server the bot is in"""
+        embed = discord.Embed(title=f'{ctx.guild.name}', description=ctx.guild.id)
+        embed.set_thumbnail(url=ctx.guild.icon_url)
+        embed.add_field(name='Members', value=ctx.guild.member_count)
+        embed.add_field(name='Channels', value=len(ctx.guild.channels))
+        embed.add_field(name='Owner', value=ctx.guild.owner)
+        embed.add_field(name='Created on', value=ctx.guild.created_at)
+        embed.set_footer(text=f"Server region is '{ctx.guild.region}'")
+        await ctx.send(embed=embed)
+    
+    @commands.command(aliases=['uy'])
+    async def guy(self, ctx):
+        """guy"""
+        await ctx.send('guy')
 
 def setup(greg):
     greg.add_cog(Miscellaneous(greg))
