@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import random
 
 cog_name = 'Miscellaneous'
 class Miscellaneous(commands.Cog):
@@ -41,6 +42,18 @@ class Miscellaneous(commands.Cog):
     async def guy(self, ctx):
         """guy"""
         await ctx.send('guy')
+
+    @commands.command(aliases=['ay'])
+    async def gay(self, ctx, *, name):
+        """Checks if someone/something is gay or not"""
+        gay = [f'{name} is gay!',
+               f'{name} is not gay!']
+        if name.lower() in ('duck', 'emptybox', 'fox', 'oatmealine', 'jill', 'jillarella', 'ladizi'):
+            await ctx.send(f'{name} is trans!')
+        elif name.lower() in ('discord'):
+            await ctx.send(f'🖕{name}🖕 is super gay!')
+        else:
+            await ctx.send(random.choice(gay))
 
 def setup(greg):
     greg.add_cog(Miscellaneous(greg))
