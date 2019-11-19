@@ -11,7 +11,7 @@ class Private(commands.Cog):
     async def on_ready(self):
         print(f'{cog_name} was loaded.')
 
-    @commands.command(aliases=['kill'])
+    @commands.command(hidden=True, aliases=['kill'])
     @commands.is_owner()
     async def logout(self, ctx):
         await ctx.send('Bye Mom !!!')
