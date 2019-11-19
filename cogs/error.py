@@ -13,7 +13,10 @@ class ErrorHandler(commands.Cog):
     
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.CommandNotFound):
+        if isinstance(error, commands.NotOwner):
+            return
+
+        elif isinstance(error, commands.CommandNotFound):
             await ctx.send('Unknown command.')
         
         elif isinstance(error, commands.MissingPermissions):
@@ -24,6 +27,7 @@ class ErrorHandler(commands.Cog):
 
         elif isinstance(error, commands.BadArgument):
             await ctx.send(error.args[0])
+
         else:
             await ctx.send('Unknown error.')
 

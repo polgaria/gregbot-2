@@ -14,6 +14,7 @@ class Util(commands.Cog):
         print(f'{cog_name} was loaded.')
 
     @commands.command(aliases=['setprefix','changeprefix'])
+    @commands.has_permissions(administrator=True)
     async def prefix(self, ctx, prefix):
         """Changes the server's bot prefix"""
         with open('./prefixes.json', 'r') as prfx:
